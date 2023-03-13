@@ -44,31 +44,22 @@ $(function () {
                     new_syntax = new_syntax.replace('NUM','item'+num)
 
                     $('div.accordion.packet-list').append(new_syntax);
-                    console.log(num+'s');
                     $.ajax({
                         type: "POST",
                         url: url+'home/getPacketListItems',
                         data: {ids:array[ix].items},
                         success: function (rsp) {
                             array_items = JSON.parse(rsp)['item_list'];
-                            console.table(array_items);
                             let i = 0;
-                            console.log(num+'sec');
                             for (const ix in array_items) {
-                                console.log(num);
                                 i++
-                                console.log(syntax_items);
-                                new_syntax_items = syntax_items.replace('IMG',url+array_items[ix].path)
-                                console.log(new_syntax_items);
-                                new_syntax_items = new_syntax_items.replace('TITLE_PI',array_items[ix].name)
-                                console.log(new_syntax_items);
+                                new_syntax_items = syntax_items.replace('IMG',url+array_items[ix].path);
+                                new_syntax_items = new_syntax_items.replace('TITLE_PI',array_items[ix].name);
                                 $('div.packet-items.item'+i).append(new_syntax_items);
                             }
-                            console.log(new_syntax_items);
                         }
                     });
                     
-                    console.log(num+'is');
 
                 }
                 
