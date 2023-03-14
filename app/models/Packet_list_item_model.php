@@ -27,7 +27,7 @@ class Packet_List_Item_Model
 
     public function getPacketItems($items)
     {
-        $query = "SELECT * FROM tbl_packet_list_item WHERE id in (" . $items . ")";
+        $query = "SELECT name, path FROM tbl_packet_list_item WHERE id in (" . $items . ")";
         $this->db->query($query);
         $this->db->execute();
         return $this->db->resultSet();
