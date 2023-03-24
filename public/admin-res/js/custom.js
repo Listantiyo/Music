@@ -1,6 +1,5 @@
+//? for packet_list_item
 $(function () {
-
-    // for packet_list_item
     $("form#item-data").submit(function (e) { 
         e.preventDefault();
         let formData = new FormData(this);
@@ -117,6 +116,87 @@ $(function () {
 
     });
 
-
-
 });
+//? end packet list
+
+//? for team
+$(function () {
+    $('button.team-link-button').click(function (e) { 
+        e.preventDefault();
+        let id = $(this).data('id');
+        let url = $(this).data('url');
+        $('input.team-link-input').val(null);
+        $('#staticBackdropLinkLabel.modal-title').html('Team Sosmed');
+        $('input.team-link-input[name=id_team]').val(id);
+        $.ajax({
+            type: 'POST',
+            url: url+'admin/team/getLink',
+            data: {id:id},
+            success: function (rsp) {
+                let array = JSON.parse(rsp).get_link;
+
+                if (array !== false) {
+                    if (array.twitter != null) {
+                        $('input.team-link-input[name=twitter]').val(array.twitter);
+                    }
+                    if (array.facebook != null) {
+                        $('input.team-link-input[name=facebook]').val(array.facebook);
+                    }
+                    if (array.instagram != null) {
+                        $('input.team-link-input[name=instagram]').val(array.instagram);
+                    }
+                    if (array.linkedin != null) {
+                        $('input.team-link-input[name=linkedin]').val(array.linkedin);
+                    }
+                }
+            }
+        });
+    });
+
+    $('a.team-button.add').click(function (e) { 
+        e.preventDefault();
+        const url = $('#FormModalTeam').attr('action');
+        $('#TeamModalLabel').html('Tambah');
+        $('.team-input[name=name]').val(null);
+        $('.team-input[name=title]').val(null);
+        $('#FormModalTeam').attr('action', url+'admin/team/tambah');
+    });
+
+    $('button.team-button.update').click(function (e) { 
+        e.preventDefault();
+        $('.team-input[name=name]').val(null);
+        $('.team-input[name=title]').val(null);
+        const url = $(this).data('url');
+        const id = $(this).data('id');
+        $('#FormModalTeam').attr('action');
+
+        $.ajax({
+            type: "POST",
+            url: url+'admin/team/getTeam',
+            data: {id:id},
+            success: function (rsp) {
+                let array = JSON.parse(rsp).get_team;
+                $('#TeamModalLabel').html('Update '+ array.name);
+                $('.team-input[name=name]').val(array.name);
+                $('.team-input[name=title]').val(array.title);
+                $('.team-input[name=id]').val(array.id);
+                $('.team-input[name=old_image]').val(array.img);
+                $('.team-input[name=old_path]').val(array.path);
+                $('#FormModalTeam').attr('action', url+'admin/team/update');
+            }
+        });
+    });
+});
+
+function trash(id,url) {
+    
+    $.ajax({
+        type: 'POST',
+        url: url+'admin/team/delete',
+        data: {id:id},
+        success: function (response) {
+            location.reload();
+        }
+    });
+}
+//? end team

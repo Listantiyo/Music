@@ -2,7 +2,6 @@
 
 class About extends Controller
 {
-
     public function index()
     {
         $data['old_about'] = $this->model('About_Model')->getSingle();
@@ -17,6 +16,12 @@ class About extends Controller
         $upload = new Upload;
         $data['image'] = $upload->image($_FILES);
         $data['input'] = $_POST;
+
+        if (file_exists($data['input']['old_path'])) {
+            if ($data['image']['error'] === 0 && !is_null($data['input']['old_image'])) {
+                unlink($data['input']['old_path']);
+            }
+        }
 
         if ($this->model('About_Model')->update($data) > 0) {
             header('Location: ' . BASEPATH . 'admin/about');

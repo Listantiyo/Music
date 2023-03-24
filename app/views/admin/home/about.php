@@ -14,15 +14,15 @@
         <div class="col-lg-6 col-md-6 col-sm-12">
             <div class="form-group">
                 <label for="exampleFormControlInput1">Title</label>
-                <input name="title" type="text" class="form-control" id="exampleFormControlInput1" value="<?= $data['old_about']['title'] ?>">
+                <input name="title" type="text" class="form-control" id="exampleFormControlInput1" value="<?php if (isset($data['old_about']['title'])) echo $data['old_about']['title'] ?>">
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Text 1</label>
-                <input name="text-1" type="text" class="form-control" id="exampleFormControlInput1" value=" <?= $data['old_about']['text1'] ?>">
+                <input name="text-1" type="text" class="form-control" id="exampleFormControlInput1" value=" <?php if (isset($data['old_about']['text1'])) echo $data['old_about']['text1']; ?>">
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Text 2</label>
-                <input name="text-2" type="text" class="form-control" id="exampleFormControlInput1" value=" <?= $data['old_about']['text2'] ?>">
+                <input name="text-2" type="text" class="form-control" id="exampleFormControlInput1" value=" <?php if (isset($data['old_about']['text2'])) echo $data['old_about']['text2']; ?>">
             </div>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12">
@@ -30,18 +30,18 @@
             <div class="row">
                 <div class="input-group mb-3 col-8">
                     <div class="custom-file">
-                        <input type="hidden" name="old_image" value="<?= $data['old_about']['img'] ?>">
-                        <input type=" hidden" name="old_path" value="<?= $data['old_about']['path'] ?>">
+                        <input type="hidden" name="old_image" value="<?php if (isset($data['old_about']['img'])) echo $data['old_about']['img']; ?>">
+                        <input type=" hidden" name="old_path" value="<?php if (isset($data['old_about']['path'])) echo $data['old_about']['path']; ?>">
                         <input name=" file" type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
                         <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                     </div>
                 </div>
-                <img class="col-4" src="<?= BASEPATH, $data['old_about']['path']; ?>" width="100rem" alt="" srcset="">
+                <img class="col-4" src="<?php if (isset($data['old_about']['path'])) echo BASEPATH, $data['old_about']['path']; ?>" width="100rem" alt="" srcset="">
             </div>
 
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Paragraph</label>
-                <textarea name="paragraph" class="form-control" id="exampleFormControlTextarea1" rows="3"><?= $data['old_about']['paragraph'] ?></textarea>
+                <textarea name="paragraph" class="form-control" id="exampleFormControlTextarea1" rows="3"><?php if (isset($data['old_about']['paragraph'])) echo $data['old_about']['paragraph']; ?></textarea>
             </div>
         </div>
         </form>

@@ -10,8 +10,9 @@
 
     <div class="row gy-4">
       <!--  -->
-      <?php foreach ($data['get_packet'] as $value) : ?>
-        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+      <?php $delay = 100;
+      foreach ($data['get_packet'] as $value) : ?>
+        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="<?= $delay; ?>">
           <div class="card-item">
             <div class="row">
               <div class="col-xl-5 service-img">
@@ -37,7 +38,8 @@
             </div>
           </div>
         </div><!-- End Card Item -->
-      <?php endforeach; ?>
+      <?php $delay += 150;
+      endforeach; ?>
 
 
     </div>

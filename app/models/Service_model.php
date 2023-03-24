@@ -18,9 +18,12 @@ class Service_Model
         return $this->db->singel();
     }
 
-    public function getAll()
+    public function getAll($query = null)
     {
-        $this->db->query('SELECT * FROM ' . $this->table);
+        if ($query === null) {
+            $query = 'SELECT * FROM ' . $this->table;
+        }
+        $this->db->query($query);
         $this->db->execute();
         return $this->db->resultSet();
     }

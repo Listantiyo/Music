@@ -14,9 +14,10 @@ class Gallery_Model
     public function getAll($query = null)
     {
         if (is_null($query)) {
-            $query = 'SELECT * FROM ' . $this->table;
+            $query = 'SELECT * FROM :table';
         }
         $this->db->query($query);
+        $this->db->bind('table', $this->table);
         $this->db->execute();
         return $this->db->resultSet();
     }

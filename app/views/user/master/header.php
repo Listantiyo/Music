@@ -41,7 +41,7 @@
   ======================================================== -->
 </head>
 
-<body>
+<body data-url="<?= BASEPATH; ?>">
 
   <!-- ======= Header ======= -->
   <header id="header" class="header d-flex align-items-center">

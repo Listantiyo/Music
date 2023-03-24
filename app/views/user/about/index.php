@@ -4,7 +4,7 @@
 
         <h2>About</h2>
         <ol>
-          <li><a href="index.html">Home</a></li>
+          <li><a href="<?= BASEPATH; ?>">Home</a></li>
           <li>About</li>
         </ol>
 
@@ -21,15 +21,16 @@
 
           <div class="col-lg-6 px-0">
             <div class="our-story">
-              <h2>JUDUL</h2>
-              <h4>Est 1988</h4>
-              <h3>Our Story</h3>
+              <h2><?= htmlentities($data['get_about']['title']); ?></h2>
+              <h4><?= htmlentities($data['get_about']['text1']); ?></h4>
+              <h3><?= htmlentities($data['get_about']['text2']); ?></h3>
 
-              laudantium temporibus dicta minus dolor.</p>
+              <p><?= htmlentities($data['get_about']['paragraph']); ?></p>
             </div>
           </div>
 
-          <div class="col-lg-6 about-img" style="background-image: url(<?= BASEPATH; ?>img/about.jpg);"></div>
+          <div class="col-lg-6 about-img" style="background-image: url(<?= BASEPATH;
+                                                                        echo htmlentities($data['get_about']['path']); ?>);"></div>
         </div>
 
 
@@ -47,109 +48,33 @@
         </div>
 
         <div class="row gy-5">
-
-          <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="100">
-            <div class="member-img">
-              <img src="<?= BASEPATH; ?>img/team/team-1.jpg" class="img-fluid" alt="">
-              <div class="social">
-                <a href="#"><i class="bi bi-twitter"></i></a>
-                <a href="#"><i class="bi bi-facebook"></i></a>
-                <a href="#"><i class="bi bi-instagram"></i></a>
-                <a href="#"><i class="bi bi-linkedin"></i></a>
+          <?php foreach ($data['get_team'] as $value) : ?>
+            <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="100">
+              <div class="member-img">
+                <img src="<?= BASEPATH;
+                          echo $value['path']; ?>" class="img-fluid" alt="">
+                <div class="social">
+                  <?php if (isset($value['twitter']) && $value['twitter'] != null) : ?>
+                    <a href="<?= $value['twitter']; ?>"><i class="bi bi-twitter"></i></a>
+                  <?php endif; ?>
+                  <?php if (isset($value['facebook']) && $value['facebook'] != null) : ?>
+                    <a href="<?= $value['facebook']; ?>"><i class="bi bi-facebook"></i></a>
+                  <?php endif; ?>
+                  <?php if (isset($value['instagram']) && $value['instagram'] != null) : ?>
+                    <a href="<?= $value['instagram']; ?>"><i class="bi bi-instagram"></i></a>
+                  <?php endif; ?>
+                  <?php if (isset($value['linkedin']) && $value['linkedin'] != null) : ?>
+                    <a href="<?= $value['linkedin']; ?>"><i class="bi bi-linkedin"></i></a>
+                  <?php endif; ?>
+                </div>
               </div>
-            </div>
-            <div class="member-info text-center">
-              <h4>Walter White</h4>
-              <span>Chief Executive Officer</span>
+              <div class="member-info text-center">
+                <h4><?= $value['name'] ?></h4>
+                <span><?= $value['title'] ?></span>
 
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="200">
-            <div class="member-img">
-              <img src="<?= BASEPATH; ?>img/team/team-2.jpg" class="img-fluid" alt="">
-              <div class="social">
-                <a href="#"><i class="bi bi-twitter"></i></a>
-                <a href="#"><i class="bi bi-facebook"></i></a>
-                <a href="#"><i class="bi bi-instagram"></i></a>
-                <a href="#"><i class="bi bi-linkedin"></i></a>
               </div>
-            </div>
-            <div class="member-info text-center">
-              <h4>Sarah Jhonson</h4>
-              <span>Product Manager</span>
-
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="300">
-            <div class="member-img">
-              <img src="<?= BASEPATH; ?>img/team/team-3.jpg" class="img-fluid" alt="">
-              <div class="social">
-                <a href="#"><i class="bi bi-twitter"></i></a>
-                <a href="#"><i class="bi bi-facebook"></i></a>
-                <a href="#"><i class="bi bi-instagram"></i></a>
-                <a href="#"><i class="bi bi-linkedin"></i></a>
-              </div>
-            </div>
-            <div class="member-info text-center">
-              <h4>William Anderson</h4>
-              <span>CTO</span>
-
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="400">
-            <div class="member-img">
-              <img src="<?= BASEPATH; ?>img/team/team-4.jpg" class="img-fluid" alt="">
-              <div class="social">
-                <a href="#"><i class="bi bi-twitter"></i></a>
-                <a href="#"><i class="bi bi-facebook"></i></a>
-                <a href="#"><i class="bi bi-instagram"></i></a>
-                <a href="#"><i class="bi bi-linkedin"></i></a>
-              </div>
-            </div>
-            <div class="member-info text-center">
-              <h4>Amanda Jepson</h4>
-              <span>Accountant</span>
-
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="500">
-            <div class="member-img">
-              <img src="<?= BASEPATH; ?>img/team/team-5.jpg" class="img-fluid" alt="">
-              <div class="social">
-                <a href="#"><i class="bi bi-twitter"></i></a>
-                <a href="#"><i class="bi bi-facebook"></i></a>
-                <a href="#"><i class="bi bi-instagram"></i></a>
-                <a href="#"><i class="bi bi-linkedin"></i></a>
-              </div>
-            </div>
-            <div class="member-info text-center">
-              <h4>Brian Doe</h4>
-              <span>Marketing</span>
-
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="600">
-            <div class="member-img">
-              <img src="<?= BASEPATH; ?>img/team/team-6.jpg" class="img-fluid" alt="">
-              <div class="social">
-                <a href="#"><i class="bi bi-twitter"></i></a>
-                <a href="#"><i class="bi bi-facebook"></i></a>
-                <a href="#"><i class="bi bi-instagram"></i></a>
-                <a href="#"><i class="bi bi-linkedin"></i></a>
-              </div>
-            </div>
-            <div class="member-info text-center">
-              <h4>Josepha Palas</h4>
-              <span>Operation</span>
-
-            </div>
-          </div><!-- End Team Member -->
-
+            </div><!-- End Team Member -->
+          <?php endforeach; ?>
         </div>
 
       </div>

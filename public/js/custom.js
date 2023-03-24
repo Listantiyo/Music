@@ -1,4 +1,6 @@
 $(function () {
+    const $global_url = $('body').data('url');
+    
     //* For Packet-List
     $('button#packet-list-show').click(function (e) { 
         e.preventDefault();
@@ -17,15 +19,13 @@ $(function () {
             data: {id_pkg:id_pkg},
             success: function (rsp) {
                 let new_syntax;
-                let ids;
-                let idclass;
                 rsp = JSON.parse(rsp);
                 array = rsp['packet_list'];
                 syntax = 
                 '<div class="accordion-item"><h2 class="accordion-header" id="headingOne">'+
                 '<button  class="accordion-button btn-packet-items collapsed" type="button" data-items-id="000" data-bs-toggle="collapse" data-bs-target="#collapseID" aria-expanded="false" aria-controls="collapseOne">TITLE_LP</button></h2>'+
                 '<div id="FOR_ID" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample"><div class="accordion-body">'+    
-                '<div class="d-flex align-items-stretch packet-items service-list NUM">'+
+                '<div class=" packet-items service-list NUM">'+
                     // space for items
                 '</div>'+
                 '</div></div></div></div>';
@@ -33,9 +33,8 @@ $(function () {
                 let num = 0;
                 
                 for (const ix in array) {
-                    let cnn = array[ix].items;
-                    
                     num++;
+
                     new_syntax = syntax.replace('TITLE_LP',array[ix].title)
                     new_syntax = new_syntax.replace('#collapseID','#collapseID'+array[ix].id)
                     new_syntax = new_syntax.replace('FOR_ID','collapseID'+array[ix].id)
@@ -51,10 +50,14 @@ $(function () {
     });
 });
 
-function itemsList(ids,iclass,url) {
+// ? FUNCTION LIST
+
+//* For Packet-List-Item
+function itemsList(ids,iclass,url) 
+{
     
     let syntax_items =             
-    '<div class="container flex-fill text-center">'+
+    '<div class="text-center">'+
     '<img width="100rem" src="IMG" alt=""><div>'+
     '<p class="text-center bg-warning"><strong>TITLE_PI</strong> </p>'+
     '</div>';
@@ -79,4 +82,17 @@ function itemsList(ids,iclass,url) {
         }
     });
     
+}
+
+function loadGallery($limit) 
+{
+    $.ajax({
+        type: "POST",
+        url: "url",
+        data: "data",
+        dataType: "dataType",
+        success: function (response) {
+            
+        }
+    });
 }

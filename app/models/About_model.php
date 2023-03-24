@@ -38,9 +38,9 @@ class About_Model
             $this->db->bind('title', $data['input']['title']);
             $this->db->bind('text1', $data['input']['text-1']);
             $this->db->bind('text2', $data['input']['text-2']);
-            $this->db->bind('paragarph', $data['input']['paragraph']);
-            $this->db->bind('img', $data['image']['error'] === 0 ? $data['image']['name'] : null);
-            $this->db->bind('path', $data['image']['error'] === 0 ? $data['image']['path'] : null);
+            $this->db->bind('paragraph', $data['input']['paragraph']);
+            $this->db->bind('img', $data['image']['error'] === 4 ? null : $data['image']['name']);
+            $this->db->bind('path', $data['image']['error'] === 4 ? null : $data['image']['path']);
             $this->db->execute();
             return $this->db->rowCount();
             exit;

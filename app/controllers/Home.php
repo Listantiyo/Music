@@ -6,8 +6,8 @@ class Home extends Controller
     public function index()
     {
         $query['packet'] = "SELECT p.*, COUNT(pl.category_id) as count_used FROM tbl_packet as p LEFT JOIN tbl_packet_list as pl ON p.id = pl.category_id GROUP BY p.id";
-
         $data['get_packet'] = $this->model('Packet_model')->getAll($query['packet']);
+        $data['get_service'] = $this->model('Service_model')->getAll();
 
         $this->view('user/master/header');
         $this->view('user/home/index', $data);
