@@ -13,9 +13,26 @@ class About extends Controller
 
     public function update()
     {
+        //? validate
+        $validate  = new Validate;
+        $is_valid  = $validate->form($_POST);
+
+        if (!$is_valid) {
+            Flasher::setFlash('tidak', 'lengkap', 'warning');
+            header('Location: ' . BASEPATH . 'admin/about');
+            exit;
+        }
+
+
         $upload = new Upload;
-        $data['image'] = $upload->image($_FILES);
+        $data['image'] = $upload->image($_FILES, 5);
         $data['input'] = $_POST;
+
+        if (gettype($data['image']) == 'string') {
+            Flasher::setFlash('GAGAL', $data['image'], 'warning', 'UPLOAD');
+            header('Location: ' . BASEPATH . 'admin/about');
+            exit;
+        }
 
         if (file_exists($data['input']['old_path'])) {
             if ($data['image']['error'] === 0 && !is_null($data['input']['old_image'])) {
@@ -24,9 +41,11 @@ class About extends Controller
         }
 
         if ($this->model('About_Model')->update($data) > 0) {
+            Flasher::setFlash('berhasil', 'diubah', 'success');
             header('Location: ' . BASEPATH . 'admin/about');
             exit;
         } else {
+            Flasher::setFlash('gagal', 'diubah', 'success');
             header('Location: ' . BASEPATH . 'admin/about');
             exit;
         }

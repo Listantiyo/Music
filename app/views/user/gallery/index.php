@@ -26,14 +26,14 @@
         -->
           <!-- End Projects Filters -->
           <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200">
-
+            <? var_dump($data['get_images']) ?>
             <?php foreach ($data['get_images'] as $value) : ?>
-              <a href="<?= BASEPATH;
+              <a href="<?php if (isset($value['path'])) echo BASEPATH;
                         echo $value['path']; ?>" data-gallery="portfolio-gallery-remodeling" class="glightbox preview-link">
 
                 <div class="col-lg-4 col-md-6 portfolio-item filter-remodeling">
                   <div class="portfolio-content h-100">
-                    <img src="<?= BASEPATH;
+                    <img src="<?php if (isset($value['path'])) echo BASEPATH;
                               echo $value['path']; ?>" class="img-fluid" alt="">
                   </div>
                 </div>

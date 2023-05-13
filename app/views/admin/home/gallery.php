@@ -1,3 +1,4 @@
+<?php Flasher::flash(); ?>
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800">Gallery</h1>
 <div class="card-header py-3">
@@ -20,18 +21,22 @@
   </div>
   <div class="card-body">
     <div class="table-responsive">
-      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-        <thead>
-          <tr>
-            <td>Jonas Alexander</td>
-            <td>Developer</td>
-            <td>San Francisco</td>
-            <td>30</td>
-            <td>2010/07/14</td>
-            <td>$86,500</td>
-          </tr>
-          </tbody>
-      </table>
+      <div class="text-center">
+        <?php foreach ($data['get_gallery'] as $value) : ?>
+          <div class="gallery">
+            <a target="_blank" href="<?= BASEPATH;
+                                      echo $value['path']; ?>">
+              <img src="<?= BASEPATH;
+                        echo $value['path']; ?>" alt="Cinque Terre" width="600" height="400">
+            </a>
+            <form class="hapus" action="<?= BASEPATH; ?>admin/gallery/delete" method="post">
+              <input type="hidden" name="id_image" value="<?= $value['id'] ?>">
+              <input type="hidden" name="path" value="<?= $value['path'] ?>">
+              <div class="desc"><button class="btn btn-danger"><i class="fa fa-trash"></i></button></div>
+            </form>
+          </div>
+        <?php endforeach; ?>
+      </div>
     </div>
   </div>
 </div>

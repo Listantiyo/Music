@@ -15,7 +15,7 @@ class Team_model
     public function single($id = null, $query = null)
     {
         if ($query === 'link') {
-            $query = 'SELECT * FROM ' . $this->table_link . ' WHERE id_team =:id';
+            $query = 'SELECT * FROM ' . $this->table_link . ' WHERE id_team=:id';
         }
         if ($query === null) {
             $query = 'SELECT * FROM ' . $this->table . ' WHERE id=:id';
@@ -41,11 +41,12 @@ class Team_model
 
     public function tambah($data)
     {
-
+        var_dump($data);
+        // die;
         $query = "INSERT INTO " . $this->table . " VALUES ('', :name, :title, :img, :path, now(), now())";
         $this->db->query($query);
-        $this->db->bind('name', $data['input']['name']);
-        $this->db->bind('title', $data['input']['title']);
+        $this->db->bind('name', ucwords($data['input']['name']));
+        $this->db->bind('title', ucfirst($data['input']['title']));
         $this->db->bind('img', $data['image']['name']);
         $this->db->bind('path', $data['image']['path']);
         $this->db->execute();
@@ -59,12 +60,13 @@ class Team_model
         $query = 'UPDATE ' . $this->table . ' SET name=:name,title=:title,img=:img,path=:path,updated_at=now() WHERE id=:id';
         $this->db->query($query);
         $this->db->bind('id', $data['input']['id']);
-        $this->db->bind('name', $data['input']['name']);
-        $this->db->bind('title', $data['input']['title']);
+        $this->db->bind('name', ucwords($data['input']['name']));
+        $this->db->bind('title', ucfirst($data['input']['title']));
         $this->db->bind('img', $data['image']['error'] === 4 ? $data['input']['old_image'] : $data['image']['name']);
         $this->db->bind('path', $data['image']['error'] === 4 ? $data['input']['old_path'] : $data['image']['path']);
         $this->db->execute();
-        $this->db->rowCount();
+
+        return $this->db->rowCount();
     }
 
     public function updateLink($data)
@@ -102,6 +104,6 @@ class Team_model
         $this->db->query($query);
         $this->db->bind('id', $id);
         $this->db->execute();
-        $this->db->rowCount();
+        return $this->db->rowCount();
     }
 }

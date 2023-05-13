@@ -3,9 +3,8 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-header">
-          <h2>Benefits</h2>
-          <p>Voluptatem quibusdam ut ullam perferendis repellat non ut consequuntur est eveniet deleniti fignissimos eos
-            quam</p>
+          <h2>Services</h2>
+          <p><?php new Globala('service_desc') ?></p>
         </div>
 
         <div class="row gy-4">

@@ -1,3 +1,4 @@
+<?php Flasher::flash(); ?>
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800">Team</h1>
 <div class="card-header py-3">
@@ -7,7 +8,7 @@
 <div class="card shadow mb-4">
   <div class="card-header py-3">
 
-    <a href="#" class="btn btn-primary btn-icon-split team-button add" data-toggle="modal" data-target="#TeamModal">
+    <a onclick="createTeam()" class="btn btn-primary btn-icon-split team-button add" data-toggle="modal" data-target="#TeamModal">
       <span class="icon text-white-50">
         <i class="fas fa-plus"></i>
       </span>
@@ -40,13 +41,30 @@
               </td>
               <td><?= $value['name']; ?></td>
               <td><?= $value['title']; ?></td>
+
               <td class="text-center">
-                <button class="btn btn-sm btn-info team-link-button" data-url="<?= BASEPATH; ?>" data-toggle="modal" data-target="#staticBackdropLink" data-id="<?= $value['id'] ?>"><i class="fa fa-link"></i></button>
+                <!-- Link Button -->
+                <button onclick="teamLinkUpdate(<?= $value['id'] ?>)" class="btn btn-sm btn-info team-link-button" data-url="<?= BASEPATH; ?>" data-toggle="modal" data-target="#staticBackdropLink" data-id="<?= $value['id'] ?>"><i class="fa fa-link"></i></button><br>
+                <hr>
+
+                <?php if ($value['twitter'] != null) echo '<i class="bi bi-twitter"></i>'; ?>
+                <?php if ($value['facebook'] != null) echo '<i class="bi bi-facebook"></i><br>'; ?>
+                <?php if ($value['instagram'] != null) echo '<i class="bi bi-instagram"></i>'; ?>
+                <?php if ($value['linkedin'] != null) echo '<i class="bi bi-linkedin"></i>'; ?>
               </td>
+
+
               <td class="text-center">
-                <button class="btn btn-sm btn-warning team-button update" data-toggle="modal" data-target="#TeamModal" data-id="<?= $value['id'] ?>" data-url="<?= BASEPATH; ?>"><i class="fa fa-edit"></i></button>
-                <button class="btn btn-sm btn-danger" data-url="<?= BASEPATH; ?>" data-id="<?= $value['id'] ?>" onclick="trash($(this).data('id'),$(this).data('url'))"><i class="fa fa-trash"></i></button>
+                <!-- Update Button -->
+                <button class="btn btn-sm btn-warning team-button update" data-toggle="modal" data-target="#TeamModal" onclick="updateTeam(<?= $value['id'] ?>)"><i class="fa fa-edit"></i></button>
+
+                <!-- Delete Button -->
+                <button onclick="$('.form-delete').submit();" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                <form class="form-delete" action="<?= BASEPATH; ?>admin/team/delete" method="post">
+                  <input type="hidden" value="<?= $value['id'] ?>" name="id">
+                </form>
               </td>
+
             </tr>
           <?php $idx++;
           endforeach; ?>
@@ -74,12 +92,10 @@
         </button>
       </div>
       <div class="modal-body">
-        <form id="FormModalTeam" action="<?= BASEPATH; ?>" method="post" enctype="multipart/form-data">
+        <form id="FormModalTeam" action="<?= BASEPATH; ?>admin/team/create" method="post" enctype="multipart/form-data">
           <div class="form-group">
             <label for="formName">Name</label>
             <input name="id" type="hidden" class="form-control team-input">
-            <input name="old_image" type="hidden" class="form-control team-input">
-            <input name="old_path" type="hidden" class="form-control team-input">
             <input name="name" type="text" class="form-control team-input" id="formName" placeholder="Name">
           </div>
           <div class="form-group">
@@ -87,8 +103,11 @@
             <input name="title" type="text" class="form-control team-input" id="formTitle" placeholder="Title">
           </div>
           <div class="input-group">
+            <img class="mr-2 preview" height="90px" width="135" style="object-fit: contain;" src="https://www.pulsecarshalton.co.uk/wp-content/uploads/2016/08/jk-placeholder-image.jpg" id="show" srcset="">
             <div class="custom-file">
-              <input type="file" name="file" class="team-input custom-file-input" id="inputProfile" aria-describedby="inputGroupFileAddon04">
+              <input name="old_image" type="hidden" class="form-control team-input">
+              <input name="old_path" type="hidden" class="form-control team-input">
+              <input type="file" onchange="preview(this)" name=" file" class="team-input custom-file-input" id="inputProfile" aria-describedby="inputGroupFileAddon04">
               <label class="custom-file-label" for="inputProfile">Choose file</label>
             </div>
           </div>
@@ -96,7 +115,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Understood</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
       </div>
       </form>
     </div>

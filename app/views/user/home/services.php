@@ -3,9 +3,8 @@
   <div class="container" data-aos="fade-up">
 
     <div class="section-header">
-      <h2>Services</h2>
-      <p>Nulla dolorum nulla nesciunt rerum facere sed ut inventore quam porro nihil id ratione ea sunt quis dolorem
-        dolore earum</p>
+      <h2>Packets</h2>
+      <p><?php new Globala('packet_desc') ?></p>
     </div>
 
     <div class="row gy-4">
@@ -31,7 +30,7 @@
           <div class="card-item custom-service">
             <div class="row ">
 
-              <button id="packet-list-show" class="btn-service btn btn-light " data-packet-name="<?= $value['title']; ?>" data-url="<?= BASEPATH; ?>" data-bs-toggle="modal" data-id-packet="<?= $value['id']; ?>" data-bs-target="#exampleModal"><?= $value['count_used']; ?> Package</button>
+              <button style="border: 1px solid #dddddd;border-top:none;" id="packet-list-show" class="btn-service btn btn-light " data-packet-name="<?= $value['title']; ?>" data-url="<?= BASEPATH; ?>" data-bs-toggle="modal" data-id-packet="<?= $value['id']; ?>" data-bs-target="#exampleModal"><?= $value['count_used']; ?> Package</button>
               <div class="p-4">
               </div>
 

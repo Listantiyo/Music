@@ -1,11 +1,11 @@
 $(function () {
-    const $global_url = $('body').data('url');
+    const $url = $('body').data('url');
+    const $location = $('body').data('location').toLowerCase();
     
     //* For Packet-List
     $('button#packet-list-show').click(function (e) { 
         e.preventDefault();
         let id_pkg = $(this).data('id-packet');
-        let url = $(this).data('url');
         let name_pkg = $(this).data('packet-name');
         let syntax;
         let array;
@@ -15,7 +15,7 @@ $(function () {
         $('h5.packet-title').html(name_pkg);
         $.ajax({
             type: "POST",
-            url: url+'home/getPacketList',
+            url: $url+'home/getPacketList',
             data: {id_pkg:id_pkg},
             success: function (rsp) {
                 let new_syntax;
@@ -25,7 +25,7 @@ $(function () {
                 '<div class="accordion-item"><h2 class="accordion-header" id="headingOne">'+
                 '<button  class="accordion-button btn-packet-items collapsed" type="button" data-items-id="000" data-bs-toggle="collapse" data-bs-target="#collapseID" aria-expanded="false" aria-controls="collapseOne">TITLE_LP</button></h2>'+
                 '<div id="FOR_ID" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample"><div class="accordion-body">'+    
-                '<div class=" packet-items service-list NUM">'+
+                '<div class="d-flex flex-wrap justify-content-evenly packet-items service-list NUM">'+
                     // space for items
                 '</div>'+
                 '</div></div></div></div>';
@@ -48,6 +48,16 @@ $(function () {
             }
         });
     });
+
+    //* Navbar Active
+    // $('#navbar ul li ').click(function (e) { 
+        
+    // });
+    $(window).on('load',function(e) {
+        $('#navbar ul li a').removeClass('active');
+        $('#navbar ul li a.nav-'+$location).addClass('active');
+    })
+    
 });
 
 // ? FUNCTION LIST
@@ -59,7 +69,7 @@ function itemsList(ids,iclass,url)
     let syntax_items =             
     '<div class="text-center">'+
     '<img width="100rem" src="IMG" alt=""><div>'+
-    '<p class="text-center bg-warning"><strong>TITLE_PI</strong> </p>'+
+    '<p class="text-center "><strong>TITLE_PI</strong> </p>'+
     '</div>';
 
     let array_items;
@@ -82,17 +92,4 @@ function itemsList(ids,iclass,url)
         }
     });
     
-}
-
-function loadGallery($limit) 
-{
-    $.ajax({
-        type: "POST",
-        url: "url",
-        data: "data",
-        dataType: "dataType",
-        success: function (response) {
-            
-        }
-    });
 }

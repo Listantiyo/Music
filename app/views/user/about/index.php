@@ -21,16 +21,15 @@
 
           <div class="col-lg-6 px-0">
             <div class="our-story">
-              <h2><?= htmlentities($data['get_about']['title']); ?></h2>
-              <h4><?= htmlentities($data['get_about']['text1']); ?></h4>
-              <h3><?= htmlentities($data['get_about']['text2']); ?></h3>
+              <h2><?php if(isset($data['get_about']['title'])) echo htmlentities($data['get_about']['title']); ?></h2>
+              <h4><?php if(isset($data['get_about']['text1'])) echo htmlentities($data['get_about']['text1']); ?></h4>
+              <h3><?php if(isset($data['get_about']['text2'])) echo htmlentities($data['get_about']['text2']); ?></h3>
 
-              <p><?= htmlentities($data['get_about']['paragraph']); ?></p>
+              <p><?php if(isset($data['get_about']['paragraph'])) echo htmlentities($data['get_about']['paragraph']); ?></p>
             </div>
           </div>
 
-          <div class="col-lg-6 about-img" style="background-image: url(<?= BASEPATH;
-                                                                        echo htmlentities($data['get_about']['path']); ?>);"></div>
+          <div class="col-lg-6 about-img" style="background-image: url(<?php if(isset($data['get_about']['path'])) echo BASEPATH;echo htmlentities($data['get_about']['path']); ?>);"></div>
         </div>
 
 

@@ -15,25 +15,89 @@ class Packet_List extends Controller
         $this->view('admin/master/footer');
     }
 
-    public function getAll()
+
+    public function getSingle()
     {
 
-        $data = $this->model('Packet_List_Item_Model')->getAll();
-        if (true) {
+        $query = "SELECT p.*,pl.category_id FROM `tbl_packet` as p LEFT JOIN tbl_packet_list as pl ON p.id = pl.category_id;";
+        $data['packet_item'] = $this->model('Packet_List_Model')->getSingle($_POST['id']);
+        $data['category'] = $this->model('Packet_Model')->getAll($query);
+        $data['items'] = $this->model('Packet_List_Item_Model')->getAll();
 
-            echo json_encode($data);
-        }
+        echo json_encode($data);
+    }
+
+    public function getAll()
+    {
+        $data = $this->model('Packet_List_Item_Model')->getAll();
+        echo json_encode($data);
     }
 
     public function create()
     {
 
+        if (!isset($_POST['category-packet']) || !isset($_POST['item'])) {
+            Flasher::setFlash('tidak', 'lengkap', 'warning');
+            header('Location: ' . BASEPATH . 'admin/packet_list');
+            exit;
+        }
+        $validate  = new Validate;
+        $is_valid  = $validate->form($_POST);
+        if (!$is_valid) {
+           Flasher::setFlash('tidak', 'lengkap', 'warning');
+            header('Location: ' . BASEPATH . 'admin/packet_list');
+            exit; 
+        }
         $data['input'] = $_POST;
 
         if ($this->model('Packet_List_Model')->create($data) > 0) {
+            Flasher::setFlash('berhasil', 'ditambah', 'success');
             header('Location: ' . BASEPATH . 'admin/packet_list');
             exit;
         } else {
+            Flasher::setFlash('gagal', 'ditambah', 'danger');
+            header('Location: ' . BASEPATH . 'admin/packet_list');
+            exit;
+        }
+    }
+
+    public function update()
+    {
+        if (!isset($_POST['category-packet']) || !isset($_POST['item'])) {
+            Flasher::setFlash('tidak', 'lengkap', 'warning');
+            header('Location: ' . BASEPATH . 'admin/packet_list');
+            exit;
+        }
+        $validate  = new Validate;
+        $is_valid  = $validate->form($_POST);
+        if (!$is_valid) {
+           Flasher::setFlash('tidak', 'lengkap', 'warning');
+            header('Location: ' . BASEPATH . 'admin/packet_list');
+            exit; 
+        }
+        $data['input'] = $_POST;
+
+        if ($this->model('Packet_List_Model')->update($data) > 0) {
+            Flasher::setFlash('berhasil', 'diubah', 'success');
+            header('Location: ' . BASEPATH . 'admin/packet_list');
+            exit;
+        } else {
+            Flasher::setFlash('gagal', 'diubah', 'danger');
+            header('Location: ' . BASEPATH . 'admin/packet_list');
+            exit;
+        }
+    }
+
+    public function delete()
+    {
+        $id = $_POST['id_packet_list'];
+
+        if ($this->model('Packet_List_Model')->delete($id) > 0) {
+            Flasher::setFlash('berhasil', 'dihapus', 'success');
+            header('Location: ' . BASEPATH . 'admin/packet_list');
+            exit;
+        } else {
+            Flasher::setFlash('gagal', 'dihapus', 'danger');
             header('Location: ' . BASEPATH . 'admin/packet_list');
             exit;
         }

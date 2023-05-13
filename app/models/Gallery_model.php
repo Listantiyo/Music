@@ -14,10 +14,9 @@ class Gallery_Model
     public function getAll($query = null)
     {
         if (is_null($query)) {
-            $query = 'SELECT * FROM :table';
+            $query = 'SELECT * FROM ' . $this->table . ' ORDER BY id DESC';
         }
         $this->db->query($query);
-        $this->db->bind('table', $this->table);
         $this->db->execute();
         return $this->db->resultSet();
     }
@@ -29,6 +28,16 @@ class Gallery_Model
         $this->db->query($query);
         $this->db->bind('name', $data['name']);
         $this->db->bind('path', $data['path']);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
+    public function delete($id)
+    {
+        $query = 'DELETE FROM ' . $this->table . ' WHERE id=:id';
+        $this->db->query($query);
+        $this->db->bind('id', $id);
         $this->db->execute();
 
         return $this->db->rowCount();

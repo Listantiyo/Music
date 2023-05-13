@@ -38,4 +38,25 @@ class Packet_List_Model
         $this->db->execute();
         return $this->db->rowCount();
     }
+
+    public function update($data)
+    {
+        $query = "UPDATE " . $this->table . " SET title=:title, items=:items, category_id=:category_id, updated_at=now() WHERE id=:id";
+        $this->db->query($query);
+        $this->db->bind('id', $data['input']['id']);
+        $this->db->bind('title', $data['input']['title']);
+        $this->db->bind('items', json_encode($data['input']['item']));
+        $this->db->bind('category_id', $data['input']['category-packet']);
+        $this->db->execute();
+        return $this->db->rowCount();
+    }
+
+    public function delete($id)
+    {
+        $query = 'DELETE FROM ' . $this->table . ' WHERE id=:id';
+        $this->db->query($query);
+        $this->db->bind('id', $id);
+        $this->db->execute();
+        return $this->db->rowCount();
+    }
 }

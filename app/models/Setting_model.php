@@ -23,6 +23,7 @@ class Setting_Model
 
     public function update($data)
     {
+
         //cek is null
         $cek = $this->getSingle();
         if (empty($cek)) {
@@ -37,6 +38,8 @@ class Setting_Model
                 :facebook, 
                 :instagram, 
                 :linkedin, 
+                :slide_title, 
+                :slide_desc, 
                 :slide_1, 
                 :slide_2, 
                 :slide_3, 
@@ -54,16 +57,15 @@ class Setting_Model
             $this->db->bind('facebook', $data['input']['facebook']);
             $this->db->bind('instagram', $data['input']['instagram']);
             $this->db->bind('linkedin', $data['input']['linkedin']);
+            $this->db->bind('slide_title', $data['input']['slide_title']);
+            $this->db->bind('slide_desc', $data['input']['slide_desc']);
             $this->db->bind('slide_1', $data['image']['slide_1']['error'] === 4 ? null : $data['image']['slide_1']['path']);
             $this->db->bind('slide_2', $data['image']['slide_2']['error'] === 4 ? null : $data['image']['slide_2']['path']);
             $this->db->bind('slide_3', $data['image']['slide_3']['error'] === 4 ? null : $data['image']['slide_3']['path']);
             $this->db->bind('packet_desc', $data['input']['packet-desc']);
             $this->db->bind('packet_desc', $data['input']['service-desc']);
-            echo '<pre>';
-            $this->db->debug();
-            echo '</pre>';
             $this->db->execute();
-            // return $this->db->rowCount();
+            return $this->db->rowCount();
             exit;
         }
         //is not null
@@ -76,7 +78,9 @@ class Setting_Model
         twitter=:twitter, 
         facebook=:facebook, 
         instagram=:instagram, 
-        linkedin=:linkedin, 
+        linkedin=:linkedin,
+        slide_title=:slide_title, 
+        slide_desc=:slide_desc,  
         slide_1=:slide_1, 
         slide_2=:slide_2, 
         slide_3=:slide_3, 
@@ -85,7 +89,7 @@ class Setting_Model
         updated_at=now()";
         $this->db->query($query);
         $this->db->bind('brand', $data['input']['brand']);
-        $this->db->bind('logo', $data['image']['logo']['error'] === 4 ? null : $data['image']['logo']['path']);
+        $this->db->bind('logo', $data['image']['logo']['error'] === 4 ? $data['input']['old_logo'] : $data['image']['logo']['path']);
         $this->db->bind('email', $data['input']['email']);
         $this->db->bind('phone', $data['input']['phone']);
         $this->db->bind('addres', $data['input']['addres']);
@@ -93,9 +97,11 @@ class Setting_Model
         $this->db->bind('facebook', $data['input']['facebook']);
         $this->db->bind('instagram', $data['input']['instagram']);
         $this->db->bind('linkedin', $data['input']['linkedin']);
-        $this->db->bind('slide_1', $data['image']['slide_1']['error'] === 4 ? null : $data['image']['slide_1']['path']);
-        $this->db->bind('slide_2', $data['image']['slide_2']['error'] === 4 ? null : $data['image']['slide_2']['path']);
-        $this->db->bind('slide_3', $data['image']['slide_3']['error'] === 4 ? null :  $data['image']['slide_3']['path']);
+        $this->db->bind('slide_title', $data['input']['slide_title']);
+        $this->db->bind('slide_desc', $data['input']['slide_desc']);
+        $this->db->bind('slide_1', $data['image']['slide_1']['error'] === 4 ? $data['input']['old_slide-1'] : $data['image']['slide_1']['path']);
+        $this->db->bind('slide_2', $data['image']['slide_2']['error'] === 4 ? $data['input']['old_slide-2'] : $data['image']['slide_2']['path']);
+        $this->db->bind('slide_3', $data['image']['slide_3']['error'] === 4 ? $data['input']['old_slide-3'] :  $data['image']['slide_3']['path']);
         $this->db->bind('packet_desc', $data['input']['packet-desc']);
         $this->db->bind('service_desc', $data['input']['service-desc']);
         $this->db->execute();

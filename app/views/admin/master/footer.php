@@ -66,6 +66,15 @@
                         $(this).next('.custom-file-label').html(e.target.files[0].name);
                     }
                 });
+
+                function preview($this) {
+                    const path = URL.createObjectURL(event.target.files[0]);
+                    $($this).parent().prev('.preview').attr('src', path);
+                }
+
+                function openModal(title) {
+                    $('.modal-title').html(title)
+                }
             </script>
             </body>
 
