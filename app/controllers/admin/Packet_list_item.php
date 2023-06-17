@@ -5,6 +5,9 @@ class Packet_List_Item extends Controller
 
     public function index()
     {
+        if (!isset($_SESSION['token'])) {
+            header('Location: ' . BASEPATH . 'token');
+        }
         $this->view('admin/master/header');
         $this->view('admin/home/packet_list');
         $this->view('admin/master/footer');

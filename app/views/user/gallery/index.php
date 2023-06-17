@@ -26,7 +26,6 @@
         -->
           <!-- End Projects Filters -->
           <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200">
-            <? var_dump($data['get_images']) ?>
             <?php foreach ($data['get_images'] as $value) : ?>
               <a href="<?php if (isset($value['path'])) echo BASEPATH;
                         echo $value['path']; ?>" data-gallery="portfolio-gallery-remodeling" class="glightbox preview-link">

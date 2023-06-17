@@ -5,6 +5,9 @@ class Testimoni extends Controller
 
     public function index()
     {
+        if (!isset($_SESSION['token'])) {
+            header('Location: ' . BASEPATH . 'token');
+        }
 
         $data['old_testimoni'] = $this->model('Testimoni_Model')->getAll();
 

@@ -1,7 +1,7 @@
 <?php
 //Path
-define('BASEPATH', 'http://localhost:8080/music/public/');
-// define('BASEPATH', 'http://localhost/music/public/');
+// define('BASEPATH', 'http://localhost:8080/music/public/');
+define('BASEPATH', 'http://localhost/music/public/');
 
 //DB
 define('DB_HOST', 'localhost');

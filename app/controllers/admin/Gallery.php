@@ -5,6 +5,9 @@ class Gallery extends Controller
 
     public function index()
     {
+        if (!isset($_SESSION['token'])) {
+            header('Location: ' . BASEPATH . 'token');
+        }
         $data['get_gallery'] = $this->model('Gallery_Model')->getAll();
 
         $this->view('admin/master/header');

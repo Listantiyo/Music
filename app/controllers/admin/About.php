@@ -4,6 +4,9 @@ class About extends Controller
 {
     public function index()
     {
+        if (!isset($_SESSION['token'])) {
+            header('Location: ' . BASEPATH . 'token');
+        }
         $data['old_about'] = $this->model('About_Model')->getSingle();
 
         $this->view('admin/master/header');

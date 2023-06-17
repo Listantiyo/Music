@@ -5,6 +5,9 @@ class Service extends Controller
 
     public function index()
     {
+        if (!isset($_SESSION['token'])) {
+            header('Location: ' . BASEPATH . 'token');
+        }
 
         $data['old_service'] = $this->model('Service_Model')->getAll();
 

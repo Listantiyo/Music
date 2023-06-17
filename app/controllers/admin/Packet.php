@@ -5,6 +5,9 @@ class Packet extends Controller
 
     public function index()
     {
+        if (!isset($_SESSION['token'])) {
+            header('Location: ' . BASEPATH . 'token');
+        }
         $data['old_packet'] = $this->model('Packet_Model')->getAll();
 
         $this->view('admin/master/header');

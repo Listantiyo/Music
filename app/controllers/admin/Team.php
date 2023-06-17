@@ -5,6 +5,9 @@ class Team extends Controller
 
     public function index()
     {
+        if (!isset($_SESSION['token'])) {
+            header('Location: ' . BASEPATH . 'token');
+        }
         $query = 'SELECT tm.*, tml.twitter, tml.facebook, tml.instagram, tml.linkedin FROM `tbl_team` as tm LEFT JOIN tbl_team_link as tml ON tml.id_team = tm.id;';
         $data['old_team'] = $this->model('Team_Model')->getAll($query);
 

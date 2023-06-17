@@ -5,6 +5,9 @@ class Packet_List extends Controller
 
     public function index()
     {
+        if (!isset($_SESSION['token'])) {
+            header('Location: ' . BASEPATH . 'token');
+        }
 
         $query = "SELECT pl.* ,p.title AS packet FROM tbl_packet_list AS pl LEFT JOIN tbl_packet AS p ON p.id = pl.category_id ORDER BY packet";
 
@@ -44,9 +47,9 @@ class Packet_List extends Controller
         $validate  = new Validate;
         $is_valid  = $validate->form($_POST);
         if (!$is_valid) {
-           Flasher::setFlash('tidak', 'lengkap', 'warning');
+            Flasher::setFlash('tidak', 'lengkap', 'warning');
             header('Location: ' . BASEPATH . 'admin/packet_list');
-            exit; 
+            exit;
         }
         $data['input'] = $_POST;
 
@@ -71,9 +74,9 @@ class Packet_List extends Controller
         $validate  = new Validate;
         $is_valid  = $validate->form($_POST);
         if (!$is_valid) {
-           Flasher::setFlash('tidak', 'lengkap', 'warning');
+            Flasher::setFlash('tidak', 'lengkap', 'warning');
             header('Location: ' . BASEPATH . 'admin/packet_list');
-            exit; 
+            exit;
         }
         $data['input'] = $_POST;
 

@@ -5,6 +5,9 @@ class Setting extends Controller
 
     public function index()
     {
+        if (!isset($_SESSION['token'])) {
+            header('Location: ' . BASEPATH . 'token');
+        }
         $data['old_setting'] = $this->model('Setting_Model')->getSingle();
 
         $this->view('admin/master/header');
@@ -14,7 +17,7 @@ class Setting extends Controller
 
     public function update()
     {
-        
+
         //? validate
         $validate  = new Validate;
         $is_valid  = $validate->form($_POST);
@@ -39,7 +42,7 @@ class Setting extends Controller
 
 
         $is['file'] = $_FILES['slide-1'];
-        $data['image']['slide_1'] = $upload->image($is,5);
+        $data['image']['slide_1'] = $upload->image($is, 5);
 
         if (gettype($data['image']['slide-1']) == 'string') {
             Flasher::setFlash('GAGAL', $data['image']['slide-1'], 'warning', 'UPLOAD SLIDE-1');
@@ -50,7 +53,7 @@ class Setting extends Controller
 
 
         $is['file'] = $_FILES['slide-2'];
-        $data['image']['slide_2'] = $upload->image($is,5);
+        $data['image']['slide_2'] = $upload->image($is, 5);
 
         if (gettype($data['image']['slide-2']) == 'string') {
             Flasher::setFlash('GAGAL', $data['image']['slide-2'], 'warning', 'UPLOAD SLIDE-2');
@@ -61,7 +64,7 @@ class Setting extends Controller
 
 
         $is['file'] = $_FILES['slide-3'];
-        $data['image']['slide_3'] = $upload->image($is,5);
+        $data['image']['slide_3'] = $upload->image($is, 5);
 
         if (gettype($data['image']['slide-3']) == 'string') {
             Flasher::setFlash('GAGAL', $data['image']['slide-3'], 'warning', 'UPLOAD SLIDE-3');
