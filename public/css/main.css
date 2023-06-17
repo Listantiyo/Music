@@ -727,6 +727,11 @@ section {
   margin: 0;
 }
 
+.packet-button button {
+  border: 1px solid #dddddd;
+  border-top:none;
+}
+
 /*--------------------------------------------------------------
 # Services Section
 --------------------------------------------------------------*/
@@ -1270,7 +1275,7 @@ section {
 }
 
 .about .about-img {
-  min-height: 600px;
+  min-height: 100%;
   background-size: cover;
   background-position: center;
 }

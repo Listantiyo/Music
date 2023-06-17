@@ -3,14 +3,21 @@
 class Globala extends Controller
 {
 
-    public function __construct($type)
+    public function __construct($type, $link = false)
     {
         $data = $this->model('Setting_Model')->getSingle();
-        self::show($data, $type);
+        self::show($data, $type, $link);
     }
 
-    public static function show($data, $type)
+    public static function show($data, $type, $link)
     {
-        echo $data[$type];
+        if ($link) {
+            echo BASEPATH . $data[$type];
+            return;
+        }
+
+        if (isset($data[$type])) {
+            echo $data[$type];
+        }
     }
 }

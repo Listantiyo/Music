@@ -43,6 +43,7 @@ class Setting_Model
                 :slide_1, 
                 :slide_2, 
                 :slide_3, 
+                :testimoni_desc, 
                 :packet_desc, 
                 :packet_desc, 
                 now(), 
@@ -62,6 +63,7 @@ class Setting_Model
             $this->db->bind('slide_1', $data['image']['slide_1']['error'] === 4 ? null : $data['image']['slide_1']['path']);
             $this->db->bind('slide_2', $data['image']['slide_2']['error'] === 4 ? null : $data['image']['slide_2']['path']);
             $this->db->bind('slide_3', $data['image']['slide_3']['error'] === 4 ? null : $data['image']['slide_3']['path']);
+            $this->db->bind('testimoni_desc', $data['input']['testimoni_desc']);
             $this->db->bind('packet_desc', $data['input']['packet-desc']);
             $this->db->bind('packet_desc', $data['input']['service-desc']);
             $this->db->execute();
@@ -84,6 +86,7 @@ class Setting_Model
         slide_1=:slide_1, 
         slide_2=:slide_2, 
         slide_3=:slide_3, 
+        testimoni_desc=:testimoni_desc, 
         packet_desc=:packet_desc, 
         service_desc=:service_desc, 
         updated_at=now()";
@@ -102,6 +105,7 @@ class Setting_Model
         $this->db->bind('slide_1', $data['image']['slide_1']['error'] === 4 ? $data['input']['old_slide-1'] : $data['image']['slide_1']['path']);
         $this->db->bind('slide_2', $data['image']['slide_2']['error'] === 4 ? $data['input']['old_slide-2'] : $data['image']['slide_2']['path']);
         $this->db->bind('slide_3', $data['image']['slide_3']['error'] === 4 ? $data['input']['old_slide-3'] :  $data['image']['slide_3']['path']);
+        $this->db->bind('testimoni_desc', $data['input']['testimoni_desc']);
         $this->db->bind('packet_desc', $data['input']['packet-desc']);
         $this->db->bind('service_desc', $data['input']['service-desc']);
         $this->db->execute();

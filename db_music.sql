@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 13 Bulan Mei 2023 pada 15.04
+-- Waktu pembuatan: 19 Bulan Mei 2023 pada 15.06
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 8.1.6
 
@@ -135,6 +135,7 @@ CREATE TABLE `tbl_setting` (
   `slide_1` varchar(255) DEFAULT NULL,
   `slide_2` varchar(255) DEFAULT NULL,
   `slide_3` varchar(255) DEFAULT NULL,
+  `testimoni_desc` text NOT NULL,
   `packet_desc` text DEFAULT NULL,
   `service_desc` text DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -171,6 +172,22 @@ CREATE TABLE `tbl_team_link` (
   `instagram` varchar(255) DEFAULT NULL,
   `linkedin` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_testimoni`
+--
+
+CREATE TABLE `tbl_testimoni` (
+  `id` int(11) NOT NULL,
+  `name` varchar(225) NOT NULL,
+  `title` varchar(225) NOT NULL,
+  `star` int(11) NOT NULL,
+  `descrb` text NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -235,6 +252,12 @@ ALTER TABLE `tbl_team_link`
   ADD KEY `tbl_tema_link_FK1` (`id_team`);
 
 --
+-- Indeks untuk tabel `tbl_testimoni`
+--
+ALTER TABLE `tbl_testimoni`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
@@ -290,6 +313,12 @@ ALTER TABLE `tbl_team`
 -- AUTO_INCREMENT untuk tabel `tbl_team_link`
 --
 ALTER TABLE `tbl_team_link`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_testimoni`
+--
+ALTER TABLE `tbl_testimoni`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --

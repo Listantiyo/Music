@@ -42,7 +42,7 @@ class Packet_List_Item extends Controller
             exit;
         }
         $upload = new Upload;
-        $data['image'] = $upload->image($_FILES,2);
+        $data['image'] = $upload->image($_FILES, 2, 'items');
         $data['input'] = $_POST;
 
         if (gettype($data['image']) == 'string') {
@@ -74,7 +74,7 @@ class Packet_List_Item extends Controller
 
         $upload = new Upload;
 
-        $data['image'] = $upload->image($_FILES,0.1);
+        $data['image'] = $upload->image($_FILES, 2, 'items');
         $data['input'] = $_POST;
 
         if (gettype($data['image']) == 'string') {

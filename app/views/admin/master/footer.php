@@ -76,6 +76,7 @@
                     $('.modal-title').html(title)
                 }
             </script>
+
             </body>
 
             </html>

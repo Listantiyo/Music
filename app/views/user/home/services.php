@@ -28,9 +28,9 @@
             </div>
           </div>
           <div class="card-item custom-service">
-            <div class="row ">
+            <div class="row packet-button">
 
-              <button style="border: 1px solid #dddddd;border-top:none;" id="packet-list-show" class="btn-service btn btn-light " data-packet-name="<?= $value['title']; ?>" data-url="<?= BASEPATH; ?>" data-bs-toggle="modal" data-id-packet="<?= $value['id']; ?>" data-bs-target="#exampleModal"><?= $value['count_used']; ?> Package</button>
+              <button style="" id="packet-list-show" class="btn-service" data-packet-name="<?= $value['title']; ?>" data-url="<?= BASEPATH; ?>" data-bs-toggle="modal" data-id-packet="<?= $value['id']; ?>" data-bs-target="#exampleModal"><?= $value['count_used']; ?> Package</button>
               <div class="p-4">
               </div>
 
@@ -47,14 +47,14 @@
   <!-- Modal Packet-List-->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content" style="z-index:1000">
+      <div id="modal-user" class="modal-content" style="z-index:1000">
         <div class="modal-header">
           <h5 class="modal-title text-warning packet-title" id="exampleModalLabel"></h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
 
-          <div class="accordion packet-list" id="accordionExample">
+          <div class="accordion packet-list" id="accordionPacket">
 
             <!-- //? for packet list -->
 

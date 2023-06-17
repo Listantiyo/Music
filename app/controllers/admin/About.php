@@ -25,7 +25,7 @@ class About extends Controller
 
 
         $upload = new Upload;
-        $data['image'] = $upload->image($_FILES, 5);
+        $data['image'] = $upload->image($_FILES, 5, 'about');
         $data['input'] = $_POST;
 
         if (gettype($data['image']) == 'string') {

@@ -13,10 +13,10 @@ class Upload
         $allowed_exstension = array('jpg', 'jpeg', 'png'); // declare extension
         $getx = explode('.', $name); // explode $name to array
 
-        if (str_contains($getx[0], '(') || str_contains($getx[0], ')')) $new_getx = str_replace(['(', ')', ' '], '', $getx[0]);
+        if (str_contains($getx[0], '(') || str_contains($getx[0], ')') || str_contains($getx[0], ' ')) $new_getx = str_replace(['(', ')', ' '], '', $getx[0]);
         else $new_getx = $getx[0];
         $extension = strtolower(end($getx)); // get lowercase str from last array of $getx = extension (format)
-        $nameNew = $new_getx . uniqid() . '.' . $extension; //newnamefile
+        $nameNew = $location . '_' . $new_getx . uniqid() . '.' . $extension; //newnamefile
         $path = 'img/' . $location . '/'; // create store path location
 
         if ($error != 4) {

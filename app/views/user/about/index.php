@@ -1,5 +1,5 @@
     <!-- ======= Breadcrumbs ======= -->
-    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('<?= BASEPATH; ?>img/breadcrumbs-bg.jpg');">
+    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('<?php new Globala('slide_1', true) ?>');">
       <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
 
         <h2>About</h2>
@@ -21,15 +21,16 @@
 
           <div class="col-lg-6 px-0">
             <div class="our-story">
-              <h2><?php if(isset($data['get_about']['title'])) echo htmlentities($data['get_about']['title']); ?></h2>
-              <h4><?php if(isset($data['get_about']['text1'])) echo htmlentities($data['get_about']['text1']); ?></h4>
-              <h3><?php if(isset($data['get_about']['text2'])) echo htmlentities($data['get_about']['text2']); ?></h3>
+              <h2><?php if (isset($data['get_about']['title'])) echo $data['get_about']['title']; ?></h2>
+              <h4><?php if (isset($data['get_about']['text1'])) echo $data['get_about']['text1']; ?></h4>
+              <h3><?php if (isset($data['get_about']['text2'])) echo $data['get_about']['text2']; ?></h3>
 
-              <p><?php if(isset($data['get_about']['paragraph'])) echo htmlentities($data['get_about']['paragraph']); ?></p>
+              <p class="show-about" style="text-align: justify;  text-indent: 7%;"><?php if (isset($data['get_about']['paragraph'])) echo $data['get_about']['paragraph']; ?></p>
             </div>
           </div>
 
-          <div class="col-lg-6 about-img" style="background-image: url(<?php if(isset($data['get_about']['path'])) echo BASEPATH;echo htmlentities($data['get_about']['path']); ?>);"></div>
+          <div class="col-lg-6 about-img" style="background-image: url(<?php if (isset($data['get_about']['path'])) echo BASEPATH;
+                                                                        echo htmlentities($data['get_about']['path']); ?>);"></div>
         </div>
 
 

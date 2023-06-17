@@ -33,7 +33,7 @@ class Packet extends Controller
         }
         //* fillter image
         $upload = new Upload;
-        $image = $upload->image($_FILES, 5);
+        $image = $upload->image($_FILES, 5, 'packets');
         if (gettype($image) == 'string') {
             Flasher::setFlash('GAGAL', $image, 'warning', 'UPLOAD');
             header('Location: ' . BASEPATH . 'admin/packet');
@@ -66,7 +66,7 @@ class Packet extends Controller
         }
         //* fillter image
         $upload = new Upload;
-        $image = $upload->image($_FILES);
+        $image = $upload->image($_FILES, 5, 'packets');
         if (gettype($image) == 'string') {
             Flasher::setFlash('GAGAL', $image, 'warning', 'UPLOAD');
             header('Location: ' . BASEPATH . 'admin/packet');

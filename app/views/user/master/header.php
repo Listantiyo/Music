@@ -11,7 +11,7 @@
 
   <!-- Favicons -->
   <link href="<?= BASEPATH;
-                                new Globala('logo'); ?>" rel="icon">
+              new Globala('logo'); ?>" rel="icon">
   <link href="<?= BASEPATH ?>img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -30,7 +30,8 @@
 
   <!-- Template Main CSS File -->
 
-  <link href="<?= BASEPATH ?>css/main.css" rel="stylesheet">
+  <!-- <link href="<?= BASEPATH ?>css/main.css" rel="stylesheet"> -->
+  <link href="<?= BASEPATH ?>css/main-dark.css" rel="stylesheet">
 </head>
 
 <body data-url="<?= BASEPATH; ?>" data-location="<?= $data['location']; ?>">

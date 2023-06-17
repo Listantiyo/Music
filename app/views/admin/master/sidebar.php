@@ -33,6 +33,7 @@
                         <a class="collapse-item" href="<?= BASEPATH; ?>admin/about">About</a>
                         <a class="collapse-item" href="<?= BASEPATH; ?>admin/team">Team</a>
                         <a class="collapse-item" href="<?= BASEPATH; ?>admin/gallery">Gallery</a>
+                        <a class="collapse-item" href="<?= BASEPATH; ?>admin/testimoni">Testimoni</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Other Pages:</h6>
                         <a class="collapse-item" href="<?= BASEPATH; ?>admin/setting">Setting</a>

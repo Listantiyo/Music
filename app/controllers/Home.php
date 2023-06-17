@@ -15,6 +15,8 @@ class Home extends Controller
         $data['team'] = $this->model('Team_model')->getAll('SELECT COUNT(*) as count FROM `tbl_team`')[0]['count'];
         $data['gallery'] = $this->model('Gallery_model')->getAll('SELECT COUNT(*) as count FROM `tbl_gallery`')[0]['count'];
 
+        $data['testimoni'] = $this->model('Testimoni_Model')->getAll();
+
         $this->view('user/master/header', $data);
         $this->view('user/home/index', $data);
         $this->view('user/master/footer');

@@ -421,3 +421,39 @@ function deleteService(id) {
     $('#service-delete').submit();
 }
 //? end Service
+
+//? for Testimoni
+function createTestimoni() {
+    $('#modalTestimoni form').attr('action', $url+'admin/testimoni/create');;
+    $('#modalTestimoni form').find('input[name=name]').val('');
+    $('#modalTestimoni form').find('select[name=star]').val('Jumlah Bintang');
+    $('#modalTestimoni form').find('input[name=title]').val('');
+    $('#modalTestimoni form').find('textarea[name=desc]').val('');
+    $('#modalService').find('.modal-title').html('Tambah Testimoni');
+}
+function updateTestimoni(id) {
+    $('#modalTestimoni form').attr('action', $url+'admin/testimoni/update');
+    $('#modalTestimoni').find('.modal-title').html('Ubah Testimoni');
+    $.ajax({
+        type: "POST",
+        url: $url+"admin/testimoni/getSingle",
+        data: {id:id},
+        dataType: "JSON",
+        success: function (rsp) {
+            
+            $('#modalTestimoni form').append('<input type="hidden" name="id" value="'+id+'">');
+            $('#modalTestimoni form').find('input[name=id]').val(id);
+            $('#modalTestimoni form').find('input[name=name]').val(rsp.name);
+            $('#modalTestimoni form').find('input[name=title]').val(rsp.title);
+            $('#modalTestimoni form').find('select[name=star]').val(rsp.star);
+            $('#modalTestimoni form').find('textarea[name=desc]').val(rsp.descrb);
+        }
+    });
+}
+
+function deleteTestimoni(id) {
+    $('#testimoni-delete input[name=id_testimoni]').val(id);
+
+    $('#testimoni-delete').submit();
+}
+//? end Testimoni

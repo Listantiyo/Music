@@ -1,5 +1,5 @@
     <!-- ======= Breadcrumbs ======= -->
-    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('assets/img/breadcrumbs-bg.jpg');">
+    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('<?php new Globala('slide_3', true) ?>');">
       <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
 
         <h2>Contact</h2>
@@ -27,8 +27,8 @@
             <div class="col-lg-6">
               <div class="info-item  d-flex flex-column justify-content-center align-items-center">
                 <i class="bi bi-map"></i>
-                <h3>Our Address</h3>
-                <p>A108 Adam Street, New York, NY 535022</p>
+                <h3>Address</h3>
+                <p><?php new Globala('addres'); ?></p>
               </div>
             </div><!-- End Info Item -->
 
@@ -36,7 +36,7 @@
               <div class="info-item d-flex flex-column justify-content-center align-items-center">
                 <i class="bi bi-envelope"></i>
                 <h3>Email Us</h3>
-                <p>contact@example.com</p>
+                <p><?php new Globala('email'); ?></p>
               </div>
             </div><!-- End Info Item -->
 
@@ -44,12 +44,33 @@
               <div class="info-item  d-flex flex-column justify-content-center align-items-center">
                 <i class="bi bi-telephone"></i>
                 <h3>Call Us</h3>
-                <p>+1 5589 55488 55</p>
+                <p><?php new Globala('phone'); ?></p>
               </div>
             </div><!-- End Info Item -->
 
           </div>
+          <div class="row gy-4 mt-1">
 
+            <div class="col-lg-12">
+              <form action="" id="contact-us" method="post" role="form" class="php-email-form">
+                <div class="row gy-4">
+                  <div class="col-lg-6 form-group">
+                    <input type="text" name="first-name" class="form-control" id="name" placeholder="Your First Name" required>
+                  </div>
+                  <div class="col-lg-6 form-group">
+                    <input type="text" class="form-control" name="last-name" id="email" placeholder="Your Last Name" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+                </div>
+                <div class="form-group">
+                  <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                </div>
+                <div class="text-center"><button type="button">Send Message</button></div>
+              </form>
+            </div>
+          </div>
 
 
         </div>

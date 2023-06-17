@@ -39,7 +39,7 @@ class Team extends Controller
     public function create()
     {
         $upload = new Upload;
-        $image = $upload->image($_FILES);
+        $image = $upload->image($_FILES, 2, 'team');
         $data['input'] = $_POST;
         $data['image'] = $image;
         if (($this->model('Team_model')->tambah($data)) > 0) {
@@ -56,7 +56,7 @@ class Team extends Controller
     public function update()
     {
         $upload = new Upload;
-        $image = $upload->image($_FILES);
+        $image = $upload->image($_FILES, 2, 'team');
         $upload->imageUpdate($image['error'], $_POST['old_path']);
 
         $data['input'] = $_POST;

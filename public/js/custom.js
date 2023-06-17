@@ -18,13 +18,22 @@ $(function () {
             url: $url+'home/getPacketList',
             data: {id_pkg:id_pkg},
             success: function (rsp) {
+                
                 let new_syntax;
                 rsp = JSON.parse(rsp);
                 array = rsp['packet_list'];
+                
+                if (array.length === 0) {
+                    $('div.accordion.packet-list').append(
+                    `<div class="d-flex justify-content-center">
+                        <h2> No Record </h2>
+                    </div>`);
+                }
+
                 syntax = 
                 '<div class="accordion-item"><h2 class="accordion-header" id="headingOne">'+
                 '<button  class="accordion-button btn-packet-items collapsed" type="button" data-items-id="000" data-bs-toggle="collapse" data-bs-target="#collapseID" aria-expanded="false" aria-controls="collapseOne">TITLE_LP</button></h2>'+
-                '<div id="FOR_ID" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample"><div class="accordion-body">'+    
+                '<div id="FOR_ID" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionPacket"><div class="accordion-body">'+    
                 '<div class="d-flex flex-wrap justify-content-evenly packet-items service-list NUM">'+
                     // space for items
                 '</div>'+
@@ -40,7 +49,7 @@ $(function () {
                     new_syntax = new_syntax.replace('FOR_ID','collapseID'+array[ix].id)
                     new_syntax = new_syntax.replace('NUM','item'+num)
 
-                    itemsList(array[ix].items , 'item'+num , url) 
+                    itemsList(array[ix].items , 'item'+num , $url) 
                     
                     $('div.accordion.packet-list').append(new_syntax);
 
@@ -50,13 +59,25 @@ $(function () {
     });
 
     //* Navbar Active
-    // $('#navbar ul li ').click(function (e) { 
-        
-    // });
     $(window).on('load',function(e) {
         $('#navbar ul li a').removeClass('active');
         $('#navbar ul li a.nav-'+$location).addClass('active');
     })
+
+    $('#contact-us div button').click(function (e) { 
+        e.preventDefault();
+        let first_name = $('#contact-us input[name=first-name]').val();
+        let last_name = $('#contact-us input[name=last-name]').val();
+        let subject = $('#contact-us input[name=subject]').val();
+        let message = $('#contact-us textarea[name=message]').val();
+
+        let to_email = $('#contact div div div:nth-child(2) div:nth-child(2) p').html();
+
+        let mail = `mailto:`+to_email+`?subject=`+first_name+` `+last_name+`_`+subject+`&body=`+message;
+
+        $('#contact-us').attr('action', mail);
+        $('#contact-us').submit();
+    });
     
 });
 
